@@ -1,5 +1,6 @@
 import argparse
-
+import io
+import sys
 
 class Formatter(argparse.ArgumentDefaultsHelpFormatter):
     def __init__(self, prog):
@@ -44,7 +45,8 @@ def get_arg_parser():
 
 def main():
     from snips_nlu.__about__ import __version__
-
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    
     arg_parser = get_arg_parser()
     args = arg_parser.parse_args()
 
